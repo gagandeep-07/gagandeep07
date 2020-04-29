@@ -1,0 +1,28 @@
+<aura:component controller="objectDataRetrive">
+    <aura:attribute name="acctId" type="String" />
+    <aura:attribute name="ErroMessage" type="String" />
+    <!-- register the Event 
+	name - Any name you can give
+	type - namespace.eventName[Event name that you created in the system]
+	-->
+    <aura:registerEvent name="quickContact" type="c:quickContactCreate" />
+    <!-- object sobjecttype sobjectname -->
+    <aura:attribute name="createContact" type="Contact" default="{'sobjectType':'Contact'
+                                                                 , 'FirstName':''
+                                                                 , 'LastName':''
+                                                                 , 'Email': ''
+                                                                 ,'Phone':''
+                                                                 }" />
+    <b>{!v.ErroMessage}</b>
+ 
+    <div class="slds-p-around_small">
+        <lightning:input type="text" aura:id="contactForm" value="{!v.createContact.FirstName}" 
+                         messageWhenValueMissing ="Please enter First Name" label="Enter Contact First Name" required="true"/> <br/>
+        <lightning:input type="text" aura:id="contactForm" value="{!v.createContact.LastName}" 
+                         messageWhenValueMissing ="Please enter Last Name" label="Enter Contact Last Name" /> <br/>
+        <lightning:input type="email" aura:id="contactForm" value="{!v.createContact.Email}" label="Enter Email" required="true" /> <br/>
+        <lightning:input type="phone" aura:id="contactForm" value="{!v.createContact.Phone}" label="Enter Phone Number" required="true"/> <br/>
+        <br/>
+        <lightning:button variant="brand" label="Quick Create Contact" title="Brand action" onclick="{!c.doSave}" />
+    </div>
+</aura:component>

@@ -1,0 +1,12 @@
+<aura:component >
+    <!-- Aura.action is a attribute type , whhich is used to call Parent CMP method -->
+    <aura:attribute name="onClick" type="Aura.Action"/> 
+    
+    <!-- Declaring the the aura:method, which helps Parent CMP to  call Child CMP method -->
+    <aura:method name="childAct" action="{!c.childAction}" access="public">
+        <aura:attribute name="param" type="String" />
+    </aura:method>
+    
+    <lightning:button variant="brand" label="invoke Parent Action" title="Brand action" onclick="{!v.onClick}" />
+    
+</aura:component>

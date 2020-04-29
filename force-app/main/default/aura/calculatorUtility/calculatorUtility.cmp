@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="number1" type="Integer" />
+    <aura:attribute name="number2" type="Integer" />
+    <aura:attribute name="output" type="Integer" />
+    <lightning:input type="number" name="input3" value="{!v.number1}" label="Number field 1" placeholder="type here..." required="true" />
+    <lightning:input type="number" name="input3" value="{!v.number2}" label="Number field 2" placeholder="type here..." required="true" />
+    <br />
+    <lightning:button variant="brand" label="Add" title="Brand action" onclick="{! c.doadd }" />
+    <lightning:button variant="brand" label="Sub" title="Brand action" onclick="{! c.dosub }" />
+    <lightning:button variant="brand" label="Mul" title="Brand action" onclick="{! c.domul }" />
+    <lightning:button variant="brand" label="Div" title="Brand action" onclick="{! c.dodiv }" />
+    <br/>
+    The Output is = {!v.output}
+</aura:component>

@@ -1,0 +1,14 @@
+<aura:component >
+    <!-- To handle the system Events, we do not need to register the System Events -->
+    
+    <!-- aura:valueChange use Change in the handler , value is if for which value this event handle-->
+    <aura:attribute name="test" type="String" />
+    
+    <aura:handler name="Change" value="{!v.test}" action="{!c.doChange}" />
+    
+    <!-- aura:valueInit	Init runs when the Component Initialize -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    {!v.test}
+    <lightning:button variant="brand" label="Change value" title="Brand action" onclick="{!c.changehandler}" />
+    
+</aura:component>

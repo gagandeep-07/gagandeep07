@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" description="This is application event to 
+                                            notify other components when a car is selected. 
+                                            Other components can get the car attribute value
+                                            and can handle the event accordingly.">
+    <aura:attribute type="Car__c" name="car" />
+</aura:event>

@@ -1,0 +1,27 @@
+<aura:component controller="GetSobjectDetails" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="options" type="List" access="PRIVATE"/>
+    <aura:attribute name="fieldNames" type="List" access="PRIVATE"/>
+    <aura:attribute name="query" type="String"  default="Select "/>
+    <aura:attribute name="selectedValue" type="String" access="PRIVATE" default="None"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <lightning:select class="" name="colorId" label="Select a Object :" aura:id="colorId" value="{!v.selectedValue}" onchange="{!c.onChange}">
+                <option value="" selected="true">choose one...</option>
+                <aura:iteration items="{!v.options}" var="option">
+                    <option text="{!option.label}" value="{!option.id}"/>
+                </aura:iteration>
+            </lightning:select>        
+        </div>
+        <div class="slds-col">
+            <aura:iteration items="{!v.fieldNames}" var="option">
+                <lightning:input type="checkbox" label="{!option.label}" name="{!option.label}" onchange="{!c.onSelect}"/>
+                <!-- <option text="{!option.label}" value="{!option.id}"/> -->
+            </aura:iteration>
+        </div>
+    </div>
+    <div>
+        {!v.query}
+    </div>
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Fired from CarTile component when new car is selected">
+    <aura:attribute type="String" name="lat" />
+    <aura:attribute type="String" name="long" />
+</aura:event>

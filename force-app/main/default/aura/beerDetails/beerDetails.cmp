@@ -1,0 +1,18 @@
+<aura:component >
+    <!-- This Component shows the Beer Details -->
+    <aura:attribute name="beerId" type="String" />
+    <aura:attribute name="beerName" type="String" />
+    <lightning:navigation aura:id="navService"/>
+    
+    <div class="slds-align_absolute-center slds-p-around_medium">
+        <lightning:recordForm
+                              recordId="{!v.beerId}"
+                              objectApiName="Beer__c"	
+                              layoutType="Full"
+                              columns="2"
+                              mode="readonly" />
+    </div>
+    <div class="slds-align_absolute-center slds-p-around_medium">
+        <lightning:button variant="base" name="order" label="Order Beer" onclick="{!c.doOrderBeer}"/>
+    </div>
+</aura:component>

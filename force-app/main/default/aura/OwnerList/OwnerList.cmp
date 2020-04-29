@@ -1,0 +1,37 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes"
+                extends="c:Base" controller="CarSearchController" access="global">
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="selectedRowsCount" type="Integer" default="0"/>
+    <aura:attribute name="maxRowSelection" type="Integer" default="5"/>
+    <aura:attribute name="selectedContacts" type="Contact[]"/>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+    <lightning:accordion aura:id="accordion" activeSectionName="all_contacts">
+        <lightning:accordionSection name="all_contacts" label="All Contacts">
+            <lightning:layout horizontalAlign="space">
+                <lightning:layoutItem size="12">
+                    
+                    <lightning:datatable
+                                         columns="{! v.columns }"
+                                         data="{! v.data }"
+                                         keyField="id"
+                                         onrowaction="{! c.handleRowAction }"
+                                         maxRowSelection ="{!v.maxRowSelection}"
+                                         onrowselection="{! c.updateSelectedText }"/>
+                </lightning:layoutItem>
+            </lightning:layout>
+            <span>
+                <strong>
+                    Selected Rows: {! v.selectedRowsCount }
+                </strong>
+            </span>
+        </lightning:accordionSection>
+        <lightning:accordionSection name="selected_contacts" label="Selected Contacts">
+            <aura:iteration items="{!v.selectedContacts}" var="con">
+                <p>{!con.Name}</p>
+            </aura:iteration> 
+        </lightning:accordionSection>
+    </lightning:accordion>
+</aura:component>

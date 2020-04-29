@@ -1,0 +1,4 @@
+<aura:event type="component" description="Event template">
+    <!-- we can have different type of attribute as we can in Component , here in event also -->
+    <aura:attribute name="contactRecord" type="Contact" />
+</aura:event>

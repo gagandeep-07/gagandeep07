@@ -1,0 +1,7 @@
+<aura:component >
+    <!-- Child Component with Aura:id -->
+    <c:childCMP aura:id="childcmp" onClick="{c.handleChildAction}"/> <br/>
+    <lightning:button variant="brand" label="invoke child Action" title="Brand action" onclick="{!c.doChildClick}" />
+    
+    <!-- Aura.action is not working , need to check -->
+</aura:component>

@@ -1,0 +1,37 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="beerList" type="Object" />
+    <aura:attribute name="beerIdClick" type="String" />
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <aura:registerEvent name="addToCart" type="c:AddToCart" />
+    <div class="slds-p-around_medium">
+        <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.beerList}"  var="item" indexVar="index">
+                <div class="slds-col slds-size_1-of-4 slds-p-around_small">
+                    <lightning:card footer="{!item.brewery_Name__c}" title="{!item.Name}" iconName="custom:custom1">
+                        <aura:set attribute="actions">
+                            <lightning:button name="{!item.Id}" value="{!item.Name }" label="View Details" onclick="{!c.viewInfo}"/>
+                        </aura:set>
+                        <p class="slds-p-horizontal_small">
+                            <br/>
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_1-of-3">x
+                                    <img src="{!$Resource.BeerImage}" />
+                                </div>
+                                <div class="slds-col slds-size_2-of-3">
+                                    Name : {!item.Name}<br/>
+                                    Brewery Id : {!item.brewery_id__c}<br/>
+                                    Brewery Name : {!item.brewery_Name__c}<br/>
+                                    Alcohol % : {!item.Alcohol__c}<br/>
+                                </div>
+                            </div>
+                        </p>
+                        <aura:set attribute="footer">
+                            <lightning:button name="{!item.Id}" value="{!index}" label="Add to Cart" onclick="{!c.addToCart}"/>
+                        </aura:set>
+                    </lightning:card>
+                </div>
+            </aura:iteration >
+        </div>
+    </div>
+    <!--  <c:beerDetails beerID="{!v.beerIdClick}" /> -->
+</aura:component>

@@ -1,0 +1,27 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable" 
+                access="global" >
+    <!-- LDS preserve all the Field level security if you dnt have FLS to a field 
+   LDS won't be able to create or update record-->
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="recordField" type="Object" />
+    <aura:attribute name="recordError" type="String" />
+    <lightning:navigation aura:id="navService"/>
+    <!-- LDS for DEleting a Record and does not required recordId="{!v.recordId}" --> 
+    <force:recordData aura:id="recordDelete"
+                      recordId="{!v.recordId}"
+                      mode="VIEW"
+                      layoutType="FULL"
+                      targetFields="{!v.recordField}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      />
+    <div>
+        <!-- if the layout Full the LDS is getting the field value from Pageloyout -->
+        <!-- Any field is not on pagelayout then LDS will not show that field in CMP -->
+        <!-- we can mention the field API to show , first it checks for Fields then Layout type -->
+        <!--LDS does not have its UI Like lightning:recordForm -->
+        {!v.recordField.Name} <br/>
+        {!v.recordField.Id}  <br/>
+        <lightning:button label="Delete Record" value="Delete Record" onclick="{!c.doDelete}"/>
+    </div>    
+</aura:component>

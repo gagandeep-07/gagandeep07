@@ -1,0 +1,31 @@
+<aura:component >
+    <aura:attribute name="whom" type="String" default="welcome all" access="public"/>
+    <aura:attribute name="Age" type="integer" default="23" access="public"/>
+    <aura:attribute name="contactObj" type="Contact" access="public"/>
+    <!-- above contactObj attribute contains all the contact fields -->
+    <!-- declaring avariable in apex class / public String whom='welcome all';
+   public Contact contactObj; -->         
+    <aura:attribute name="colorArrray" type="String[]" default="['red','blue','black']" access="public"/>
+    <aura:attribute name="colorList" type="List" default="['red','blue','black']" access="public"/>
+    <aura:attribute name="colorSet" type="Set" default="['red','blue','black']" access="public"/>
+        <aura:attribute name="mapValue" type="List" />
+
+    <lightning:input name="input1" value="{!v.whom}" label="Enter some text" />
+    Hi - {!v.whom} -  {!v.Age}<br/>
+    Color Array - {!v.colorArrray[0]}<br/>
+    Color List - {!v.colorList[1]}<br/>
+    Color Set - {!v.colorSet[2]}<br/>
+    <lightning:button variant="brand" label="Create Map" title="Base action" onclick="{! c.handleClick }"/><br/>
+    <lightning:input name="input2" aura:id="testInput" value="1234qwee" label="Aura Id" /><br/>
+    <aura:iteration items="{!v.colorArrray}" var="item">
+        Color  value ="{!item }"<br/>
+    </aura:iteration>
+    <!-- Iteration in apex using for each Loop
+for(String str : listofSting){
+str 
+}
+-->
+    <aura:iteration items="{!v.mapValue}" var="mapitem">
+        {!mapitem.key} - {!mapitem.value}<br/>
+    </aura:iteration>
+</aura:component>

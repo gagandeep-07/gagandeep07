@@ -1,0 +1,34 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" 
+                access="global" >
+    <!-- LDS preserve all the Field level security if you dnt have FLS to a field 
+   LDS won't be able to create or update record-->
+    <aura:attribute name="record" type="Object" />
+    <!-- Object type is automatic type cast the object -->
+    <aura:attribute name="recordField" type="Object" />
+    <aura:attribute name="recordError" type="String" />
+    <!-- LDS for view Record --> 
+    <force:recordData aura:id="recordViewer"
+                      recordId="{!v.recordId}"
+                      mode="VIEW"
+                      layoutType="FULL"
+                      fields="Name,Id,Alcohol__c,Tags__c"
+                      targetFields="{!v.recordField}"
+                      targetError="{!v.recordError}"
+                      targetRecord="{!v.record}"
+                      />
+    <div>
+        <!-- Use fields then you will not face the Layout type problem -->
+        <!-- if the layout Full the LDS is getting the field value from Pageloyout -->
+        <!-- when we use Layout type is FULL , Any field is not on pagelayout then LDS will not show that field in CMP -->
+        <!-- we can mention the field API to show , first it checks for Fields then the Layout type -->
+        <!-- LDS does not have its UI Like lightning:recordForm -->
+        
+        <p>Using targetFields </p>
+        {!v.recordField.Name} <br/>
+        {!v.recordField.Id}  <br/>
+        {!v.recordField.Alcohol__c} <br/>
+        <p>Using targetRecord</p> 
+        {!v.record.fields.Name.value} 
+        
+    </div>    
+</aura:component>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>42.0</apiVersion>
+    <description>This is application event to notify other components when a car is selected. Other components can get the car attribute value and can handle the event accordingly.</description>
+</AuraDefinitionBundle>

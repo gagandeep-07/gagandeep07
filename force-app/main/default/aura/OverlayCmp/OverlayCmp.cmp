@@ -1,0 +1,44 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" >
+    <!-- overlayLibrary does not work with Standalone lightning application and work with LEX and Communities -->
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    
+    <!-- navigation to other lightning Page or URL -->
+    <lightning:navigation aura:id="navService"/>
+    
+    <lightning:button name="modal" label="Show Modal" onclick="{!c.handleShowModal}"/>
+    <lightning:button name="navigate" label="Navigate" onclick="{!c.handleNavigate}"/>
+    <lightning:button name="beerBar" label="Beer Bar" onclick="{!c.navigateBeerBar}"/>
+    
+    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+                <!-- Your we can only use lightning:outputField for recordViewForm components here -->
+                <lightning:outputField fieldName="Name" />
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <!-- More lightning:outputField components here recordEditForm can use the inputField -->
+                <lightning:outputField fieldName="SLA__c" />
+            </div>
+        </div>
+    </lightning:recordViewForm>
+    
+    <lightning:recordEditForm
+                              onload="{!c.handleLoad}"
+                              onsubmit="{!c.handleSubmit}"
+                              onsuccess="{!c.handleSuccess}"
+                              recordId="{!v.recordId}"
+                              objectApiName="Account">
+        <!-- the messages component is for error messages -->
+        <lightning:messages />
+        
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="SLA__c" />
+        <lightning:inputField fieldName="ParentId" />
+        <div class="slds-m-top_medium">
+            <lightning:button variant="brand" type="submit" name="save" label="Save" />
+        </div>
+    </lightning:recordEditForm>
+    
+    <lightning:button name="dynamicCmp" label="Create Component" onclick="{!c.dynamicComp}"/>
+    {!v.body}
+</aura:component>

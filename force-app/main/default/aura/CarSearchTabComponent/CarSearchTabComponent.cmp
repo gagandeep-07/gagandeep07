@@ -1,0 +1,41 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+    
+    <!-- searchFormSubmit event handler to call aura method 'searchCars' of
+  CarSearchResult component -->
+    <aura:handler name="searchFormSubmit" event="c:SearchFormSubmitEvent" action="{!c.doFormSubmit}" />
+    
+    <lightning:layout horizontalAlign="space">
+        <lightning:layoutItem size="8">
+            <lightning:layout multipleRows="true">
+                
+                <lightning:layoutItem size="12" padding="around-small">
+                    <!-- Top CarSeachForm Component -->
+                    <lightning:card title="Search Your Car" class="bottom_margin">
+                        <c:CarSearchForm />
+                    </lightning:card>
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem size="12" padding="around-small">
+                    <!-- CarSearchReult component which has CarTile component nested -->
+                    <lightning:card title="Matching Cars" class="bottom_margin">
+                        <c:CarSearchResult aura:id="carSearchResult"/>
+                    </lightning:card>
+                </lightning:layoutItem>
+                
+            </lightning:layout>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="4">
+            <lightning:layout multipleRows="true">
+                
+                <lightning:layoutItem size="12" padding="around-small">
+                    <c:CarDetails />
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem size="12" padding="around-small">
+                    <c:CarLocation />
+                </lightning:layoutItem>
+                
+            </lightning:layout>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

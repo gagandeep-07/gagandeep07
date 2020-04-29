@@ -1,0 +1,37 @@
+<aura:component controller="objectDataRetrive" implements="force:hasSobjectName,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="ContLst" type="Contact[]" />
+    <!-- Init is a System event , we not need to register this event. 
+	but we can directly handle this init Event in Component-->
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
+    <!-- Handle the Event in Parent CMP
+	name - as same Name you give the registerEvent in Child CMP
+	event - namespace.eventName[Event name that you created in the system]
+	action - javascript method for handing the event fired from Child CMP
+	-->
+    <aura:handler name="quickContact" event="c:quickContactCreate" action="{!c.eventHandler}"/>
+    Account Record Id - {!v.recordId}<br/>
+    Object Name  - {!v.sObjectName}
+    <div>
+        <!-- createContact is the Child component where we create the Contact for Account -->
+        <c:createContact acctId="{!v.recordId}"/>
+    </div>
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.ContLst}"  var="con">
+                <div class="slds-col slds-size_1-of-3 slds-p-around_small">
+                    <lightning:card footer="Card Footer" title="{!con.FirstName}" iconName="custom:custom1">
+                        <aura:set attribute="actions">
+                            <lightning:button name="{!con.Id}" label="View Details" onclick="{!c.viewContact}"/>
+                        </aura:set>
+                        <p class="slds-p-horizontal_small">
+                            <br/>
+                            Email : {!con.Email}<br/>
+                            Record ID : {!con.Id}<br/>
+                        </p>
+                    </lightning:card>
+                </div>
+            </aura:iteration >
+        </div>
+    </div>
+</aura:component>

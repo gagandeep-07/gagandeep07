@@ -1,0 +1,1 @@
+<aura:event type="COMPONENT" description="This event will be fired once a new car experience will be added" />

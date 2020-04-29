@@ -1,0 +1,13 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" 
+                access="global" >
+	
+    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Car__c">
+        <div class="slds-box">
+            <lightning:outputField fieldName="Name" />
+            <lightning:outputField fieldName="Build_Year__c" />
+            <lightning:outputField fieldName="Mileage__c" />
+            <lightning:outputField fieldName="Per_Day_Rent__c" />
+        </div>
+    </lightning:recordViewForm>
+    
+</aura:component>

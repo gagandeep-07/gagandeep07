@@ -1,0 +1,24 @@
+<aura:component >
+    <aura:attribute name="displayedSection" type="string" default=""/>
+    <aura:handler name="init" value="{!this}" action ="{!c.doInit}" />
+    <div>
+        <b> This component is going to explain div slds show-hide functionality</b>
+    </div>
+    <lightning:button label="Display Section 1" variant="brand" onclick="{!c.displaySection1}"/>
+    <lightning:button label="Display Section 2" variant="brand" onclick="{!c.displaySection2}"/>
+    <div aura:id="firstsection" class="{!if(v.displayedSection == 'section1','slds-show','slds-hide')}">
+        <div>
+            <b> First Div Section</b>
+        </div>
+        <lightning:input type="text" label="Section 1 input" name="sec1" value="Inside Section 1" aura:id="sec1value"/>
+    </div>
+    
+    <div aura:id="secondsection" class="{!if(v.displayedSection == 'section2','slds-show','slds-hide')}">
+        <div>
+            <b> Second Div Section</b>
+        </div>
+        <lightning:input type="text" label="Section 2 input"  name="sec1" value="Inside Section 2" aura:id="sec2value"/>        
+    </div>
+    
+    
+</aura:component>

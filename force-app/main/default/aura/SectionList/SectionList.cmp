@@ -1,0 +1,29 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" 
+                extends="c:Base" controller="CarTypeSearch" access="global" >
+        
+    <aura:attribute name="carTypes" type="Car_Type__c[]"/>
+    
+    <aura:registerEvent name="changeComponent" type="c:NavigationItemClickedComponentEvent" />
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <aura:method name="changeSelection" action="{!c.changeSelection}" 
+                 description="This method will make selection change in verticalNavigation"> 
+        <aura:attribute name="componentName" type="String" default="home"/>
+    </aura:method>
+    
+    <lightning:card title="Quick View" class="top_margin">
+        <lightning:verticalNavigation aura:id="quickView" onselect="{!c.changeComponent}">
+            <lightning:verticalNavigationSection label="Browse">
+                <lightning:verticalNavigationItem label="Home" name="home"/>
+                <lightning:verticalNavigationItem label="Car Browser" name="car"/>
+                <lightning:verticalNavigationItem label="Owner Browser" name="owner"/>
+            </lightning:verticalNavigationSection>
+            <lightning:verticalNavigationOverflow title="Car Types">
+                <aura:iteration items="{!v.carTypes}" var="carType">
+                    <lightning:verticalNavigationItem label="{!carType.Name}" name="{!carType.Id}" />
+                </aura:iteration>
+            </lightning:verticalNavigationOverflow>
+        </lightning:verticalNavigation>
+    </lightning:card>
+</aura:component>

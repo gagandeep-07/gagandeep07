@@ -1,0 +1,29 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <!-- these attributes are to define component height and width -->
+    <aura:attribute name="width"  type="String" default="100%" />
+    <aura:attribute name="height" type="String" default="200px" />
+    
+    <!-- location object to dsplay location on map -->
+    <aura:attribute name="location" type="SObject"/>
+    
+    <!-- This boolean attribute will be true once js is loaded from external source -->
+    <aura:attribute name="jsLoaded" type="boolean" default="false"/>
+    
+    <!-- Handling the MapMarkerApplicationEvent Fired CarTile event -->
+    <aura:handler event="c:CarSelectedApplicationEvent" action="{!c.loadMap}"/>
+    
+    <!-- loading js script from static source 
+		afterScriptsLoaded method will be fired once the resource will be loaded-->
+    <ltng:require styles="{!$Resource.Leaflet + '/leaflet.css'}" 
+                  scripts="{!$Resource.Leaflet + '/leaflet-src.js'}"
+                  afterScriptsLoaded="{!c.jsLoaded}" /> 
+    
+    <aura:if isTrue="{! !empty(v.location)}">
+        <lightning:card title="Current Car Location">
+            <div aura:id="map" style="{!'width: ' + v.width + '; height: ' + v.height}">
+                <div style="width:100%; height:100%" class="slds-align_absolute-center">Please make a selection</div>
+            </div>
+        </lightning:card>
+    </aura:if>
+    
+</aura:component>

@@ -1,0 +1,13 @@
+<aura:component>
+    <aura:attribute name="wholeNumber" type="Integer" access="public"/>
+    <aura:attribute name="percentage" type="Integer" access="public"/>
+    <div>
+        <lightning:input name="input1" aura:id="inputText" label="Enter some text" />
+        <lightning:input value="{!v.wholeNumber}" type="number" name="input1" aura:id="inputText2" label="Enter a Number" />
+        <!-- Add formatter attribute in below Input tag anf give as percentage Fixed-->
+        <lightning:input value="{!v.percentage}" type="number" name="input2" aura:id="inputText1" label="Enter a Percentage" />
+    </div>
+    <!-- there vairous math finction that we can use in Aura Lightning cmp-->
+    The percentage = {!div(mult(v.wholeNumber,v.percentage),100)}    
+
+</aura:component>

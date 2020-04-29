@@ -1,0 +1,20 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" 
+                access="global" 
+                controller="CarSearchController"
+                extends="c:Base">
+	<aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <lightning:layout horizontalAlign="space">
+        <lightning:layoutItem size="12">
+            <lightning:datatable
+                                 columns="{! v.columns }"
+                                 data="{! v.data }"
+                                 keyField="Id"
+                                 hideCheckboxColumn="true"
+                                 onrowaction="{! c.handleRowAction }"/>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

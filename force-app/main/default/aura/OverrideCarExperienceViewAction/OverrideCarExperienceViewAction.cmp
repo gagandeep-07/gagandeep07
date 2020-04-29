@@ -1,0 +1,42 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride,force:hasRecordId,force:hasSObjectName" 
+                access="global">
+    
+    <aura:attribute name="recordId" access="global" type="String" />
+    <aura:attribute name="carExp" access="public" type="Car_Experience__c" />
+    <aura:attribute name="recordError" access="public" type="String" />
+    
+    <force:recordData aura:id="recordLoader"
+                      recordId="{!v.recordId}"
+                      targetFields="{!v.carExp}"
+                      targetError="{!v.recordError}"
+                      fields="Car__r.Id, Car__r.Name, Car__r.Contact__r.Name, 
+                              Car__r.Picture__c, Name, Experience__c"/>
+    
+    
+    
+    
+    
+    <lightning:card >
+        <aura:set attribute="title">
+            {!v.carExp.Name}
+        </aura:set>
+        <aura:set attribute="actions">   
+            <lightning:button label="Edit" onclick="{! c.onEdit }"/>  		
+        </aura:set>
+        
+        <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Car_Experience__c">
+            <lightning:formattedText value="Demo of overridden component" />
+            <div class="slds-box">
+                <lightning:outputField fieldName="Name" />
+                <lightning:outputField fieldName="Experience__c" />
+                <lightning:outputField fieldName="Car__c" />
+                
+                <b>'Car Owner Name '</b><lightning:formattedText value="{! v.carExp.Car__r.Contact__r.Name}" />
+                
+            </div>
+        </lightning:recordViewForm>
+        <img src="{!v.carExp.Car__r.Picture__c}" style="width:200px;height:200px;float:left; margin-right: 5px"/>
+    </lightning:card>
+    <br />
+    
+</aura:component>

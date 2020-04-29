@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <!-- here if:true is looking for the boolean property value is true-->
+        <template if:true={isTom}>
+            Tom is visible
+            <img src="https://pluspng.com/img-png/tom-and-jerry-png-tom-and-jerry-png-1200.png" width="500" height="650" />
+        </template>
+        <template if:true={isJerry}>
+            Jerry is visible
+            <img src="https://lh3.googleusercontent.com/proxy/1Mkzrc_q_osttE-HZ7Dp7w2L_I3kRkjGLGhm26BcQcyOgp2qDfZseakA9asvezZazj6-Wj-W1dEnW_bupIIpn6D0m9SkerDCUkiluw" width="500" height="650" />
+        </template> 
+        <!-- <template if:false={booleanProperty} looking for the boolean property is false and then render the template -->
+    </div>
+    <div>
+
+    </div>
+    <lightning-button variant="brand" label="Show Tom" value="showTom"  onclick={showTom} class="slds-m-left_x-small"></lightning-button>
+    <lightning-button variant="brand" label="Show Jerry" value="showJerry" onclick={showJerry} class="slds-m-left_x-small"></lightning-button>
+
+</template>

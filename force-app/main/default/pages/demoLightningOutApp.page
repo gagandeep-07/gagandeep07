@@ -1,0 +1,48 @@
+<apex:page standardController="Opportunity" sidebar="false" showHeader="false" standardStylesheets="false">
+    <apex:includeLightning />
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    <div id="lightning"/>
+    <script>     
+        
+        $Lightning.use("c:myFirstLightningApp", function() {
+            $Lightning.createComponent("c:beerExplorer",
+                  {                        
+                   
+                  },
+                  "lightning",
+                  function(cmp) {
+                      document.getElementById("VF_Spinner").style.display = 'none';
+              });
+        });
+    </script>
+    <apex:stylesheet value="/resource/SLDS203/assets/styles/salesforce-lightning-design-system-ltng.css"/>
+     <div class="mhe">           
+         <div class="slds-spinner_container"  id="VF_Spinner">
+          <div class="slds-spinner--brand slds-spinner slds-spinner--large" role="alert">
+            <span class="slds-assistive-text">App Loaded</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+          </div>
+        </div>
+    </div> 
+    <script type="text/javascript">
+     (function() {
+            try {
+                 
+                var a = navigator.userAgent;
+                if ((a.indexOf('Salesforce') != -1) && (a.indexOf('iPhone') != -1 || a.indexOf('iPad') != -1) && (a.indexOf('OS/8') != -1 || a.indexOf('OS 8') != -1 || a.indexOf('OS/9') != -1 || a.indexOf('OS 9') != -1 || a.indexOf('OS/10') != -1 || a.indexOf('OS 10') != -1) && (a.indexOf('Safari') == -1)) {
+                    var s = document.createElement('style');
+                    window.onkeydown=function(){window.focus();}
+                    if (a.indexOf('OS/8') != -1 || a.indexOf('OS 8') != -1) {
+                        s.innerHTML = "html,html body{overflow: auto;-webkit-overflow-scrolling:touch;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+                    }else{
+                        s.innerHTML = "html,html body{overflow: auto;-webkit-overflow-scrolling:auto;}body{position:absolute;left:0;right:0;top:0;bottom:0;}";
+                    }
+                    document.getElementsByTagName('head')[0].appendChild(s);
+                }
+            } catch (e) {}
+        })();
+    
+    </script>
+    <outputText value=""/>
+</apex:page>

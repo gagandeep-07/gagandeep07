@@ -1,0 +1,48 @@
+<template>
+    <div class="slds-m-around_small">
+        <lightning-card title="For Each Demo" icon-name="standard:contact" >
+            <!-- Array to iterate and instance for storing the values and on which index of the Array -->
+            <template for:each={contacts} for:item="item" for:index="index" >
+                <!-- Defining Key is importent , if you are making any change in a particular key in the list, only the changed key will rendered-->
+                <!-- For key we can use only Number and String. we cannot use object or index-->
+                <p key={item.Id} class="slds-m-around_small">
+                   {index} - {item.Name} &nbsp; {item.Email}
+                </p>
+            </template>
+        </lightning-card>
+        
+        <lightning-card title="Iterator Demo" icon-name="standard:contact" >
+            <!-- iterator have 2 special function to find that are you on First or Last element of the list -->
+            <!-- this helps alot in some special or complex scenarios -->
+            <!-- iterator:propertyName and for display propertyName.value.Name/Email -->
+                <template iterator:it={contacts}>
+                <!-- For key we can use only Number and String. we cannot use object or index-->
+                    <li key={it.value.Id} 
+                        class="slds-m-around_small" 
+                        style="list-style-type: none; " >
+                        <!-- Special function First or Last -->
+                        <div if:true={it.first} class="list-first"></div>
+                            {it.value.Name} &nbsp; {it.value.Email}
+                        <div if:true={it.last} class="list-last"></div>
+                    </li>
+                </template>
+        </lightning-card>
+    </div>
+
+    <!--
+        iterator:properTyName={listofRecord}
+        {properTyName.value.Email}
+    -->
+    
+    <!-- in Apex
+        for(Contact con : contacts){
+        }
+    -->
+
+    <!-- in AURA 
+        <aura:iteration items="{!v.conList}" var="contact">
+              Contact - {contact.FistName} <br/>
+        </aura:iteration>
+    -->
+
+</template>

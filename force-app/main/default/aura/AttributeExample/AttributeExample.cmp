@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <!-- How to declare a variable in Apex class
+  public Sting Whom ='Gagandeep Verma';
+ public Integer Age ='25';
+ public Contact ContactObj;
+ -->
+    
+    <aura:attribute name="Whom" type="String" default="Gagandeep verma" access="public"/>
+    <aura:attribute name="Age" type="Integer" default="25" access="public"/>
+    <aura:attribute name="ContactObj" type="Contact" access="public"/>
+    
+    <!-- There are 4 type of collection in Lightning 
+ Array
+ List
+ Set
+ Map
+-->
+    <lightning:input name="input1" aura:id="inputText" label="Enter some text" />
+    <aura:attribute name="colorPaletteArray" type="String[]" default="['red','green','blue']" />
+    <aura:attribute name="colorPaletteList" type="List" default="['red','green','blue']" />
+    <aura:attribute name="colorPaletteSet" type="Set" default="['red','green','blue']" />
+    <aura:attribute name="sectionLabels" type="Map" default="{a:'label1',b:'label2',c:'label3'}" />
+    <lightning:button variant="brand" label="Brand" title="Brand action" onclick="{!c.handleClick }" />
+    Welcome : {!v.Whom} {!v.Age}<br/>
+    {!v.colorPaletteArray[0]}
+    {!v.colorPaletteList[1]}
+    {!v.colorPaletteSet[2]}
+</aura:component>

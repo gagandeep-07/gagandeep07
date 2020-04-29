@@ -1,0 +1,21 @@
+<aura:component controller="youtubeAPICMPClass" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="response" type="Object" />
+    
+    <lightning:input
+                     aura:id="enter-search"
+                     name="enter-search"
+                     label="Search when user hits the 'enter' key"
+                     type="search"
+                     />
+    
+    <lightning:button variant="brand-outline" label="Brand Outline" title="Brand action" onclick="{! c.handleKeyUp }" />
+    {!v.response.viewCount}<br/>
+    {!v.response.commentCount}<br/>
+    
+    {!v.response.subscriberCount}<br/>
+    
+    {!v.response.hiddenSubscriberCount}<br/>
+    {!v.response.videoCount}
+    
+</aura:component>

@@ -1,0 +1,14 @@
+<template>
+    <!-- All HTML Event are supported in LWC , we have a big List of HTML Events-->
+    <!-- simply call JS method by onchange={handleChange}-->
+       <div class="slds-p-around_medium lgc-bg">
+        <lightning-input value={textField} type="text" label="onchange Event" placeholder="type here..." maxlength="10"
+        onchange={handleChange} ></lightning-input>
+        <lightning-input value={textField} type="text" label="onblur Event" placeholder="type here..." maxlength="10"
+        onblur={handleChange} ></lightning-input>
+        <lightning-input value={textField} type="text" label="onKeyup Event" placeholder="type here..." maxlength="10"
+        onkeyup={handleChange} ></lightning-input>
+        <lightning-button variant="base" label="Click Me !" value="Click Me val" title="Looks like a link" 
+        onclick={handleChange} class="slds-m-left_x-small"></lightning-button>
+    </div>
+</template>

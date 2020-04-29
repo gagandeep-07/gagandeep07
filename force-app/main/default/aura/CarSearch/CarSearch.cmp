@@ -1,0 +1,100 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+    
+    
+    <aura:attribute name="showHome" type="boolean" default="true" />
+    <aura:attribute name="showCarList" type="boolean" default="false" />
+    <aura:attribute name="showOwnerList" type="boolean" default="false" />
+    <aura:attribute name="showFilteredCars" type="boolean" default="false" />
+    
+    <aura:attribute name="showDetails" type="boolean" default="false" />
+    
+    <!-- searchFormSubmit event handler to call aura method 'searchCars' of
+  CarSearchResult component -->
+    <aura:handler name="searchFormSubmit" event="c:SearchFormSubmitEvent" action="{!c.doFormSubmit}" />
+    
+    <aura:handler name="changeComponent" event="c:NavigationItemClickedComponentEvent" action="{!c.changeComponent}" />
+    <aura:handler event="c:HideSideBar" action="{!c.hideDetails}" />
+    <aura:handler event="c:CarSelectedApplicationEvent" action="{!c.showDetails}" />
+    
+    <lightning:layout horizontalAlign="space">
+        <lightning:layoutItem size="9">
+            <lightning:layoutItem size="12" padding="around-small">
+                <lightning:layout horizontalAlign="space">
+                    <lightning:layoutItem size="2" padding="around-small">
+                        <c:SectionList aura:id="sectionList"/>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="10" padding="around-small">
+                        <lightning:layout multipleRows="true">
+                            
+                            <aura:if isTrue="{!v.showHome}">
+                                <lightning:layoutItem size="12" padding="around-small">
+                                    <!-- Top CarSeachForm Component -->
+                                    <lightning:card title="Search Your Car">
+                                        <c:CarSearchForm />
+                                    </lightning:card>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="12" padding="around-small">
+                                    <!-- CarSearchReult component which has CarTile component nested -->
+                                    <lightning:card title="Matching Cars">
+                                        <c:CarSearchResult aura:id="carSearchResult"/>
+                                    </lightning:card>
+                                </lightning:layoutItem>
+                            </aura:if>
+                            <aura:if isTrue="{!v.showCarList}">
+                                <lightning:layoutItem size="12" padding="around-small">
+                                    <lightning:card title="All Cars">
+                                        <aura:set attribute="actions">
+                                            <lightning:button iconName="utility:back" label="Go Back" 
+                                                              onclick="{!c.showHome}"/>
+                                        </aura:set>
+                                        <c:CarList aura:id="carList"/>
+                                    </lightning:card>
+                                </lightning:layoutItem>
+                            </aura:if>
+                            <aura:if isTrue="{!v.showOwnerList}">
+                                <lightning:layoutItem size="12" padding="around-small">
+                                    <lightning:card title="All Owners">
+                                        <aura:set attribute="actions">
+                                            <lightning:button iconName="utility:back" label="Go Back" 
+                                                              onclick="{!c.showHome}"/>
+                                        </aura:set>
+                                        <c:OwnerList aura:id="ownerList"/>
+                                    </lightning:card>
+                                </lightning:layoutItem>
+                            </aura:if>
+                            <aura:if isTrue="{!v.showFilteredCars}">
+                                <lightning:layoutItem size="12" padding="around-small">
+                                    <lightning:card title="Filtered Cars">
+                                        <aura:set attribute="actions">
+                                            <lightning:button iconName="utility:back" label="Go Back" 
+                                                              onclick="{!c.showHome}"/>
+                                        </aura:set>
+                                        <c:CarSearchResult aura:id="carSearchResultNavigation"/>
+                                    </lightning:card>
+                                </lightning:layoutItem>
+                            </aura:if>
+                            
+                        </lightning:layout>
+                    </lightning:layoutItem>
+                </lightning:layout>
+            </lightning:layoutItem>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="3">
+            <lightning:layout multipleRows="true">
+                
+                <lightning:layoutItem size="12" padding="around-small">
+                    <aura:if isTrue="{!v.showDetails}">
+                        <c:CarDetails />
+                    </aura:if>
+                </lightning:layoutItem>
+                
+                <lightning:layoutItem size="12" padding="around-small">
+                    <aura:if isTrue="{!v.showDetails}">
+                        <c:CarLocation />
+                    </aura:if>
+                </lightning:layoutItem>
+                
+            </lightning:layout>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

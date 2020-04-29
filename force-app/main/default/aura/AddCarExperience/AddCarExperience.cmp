@@ -1,0 +1,39 @@
+<aura:component extends="c:Base">
+    <aura:attribute type="Car__c" name="car" access="public" />
+    <aura:attribute type="Car_Experience__c" name="carExperience" access="public" />
+    
+    <!-- Attribute to capture error thrown by Lighting Data Service -->
+    <aura:attribute name="recordError" type="String" access="private" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+ 	
+    <aura:registerEvent name="carExpAdded" type="c:CarExpAdded" /> 
+    <!-- here we are using lightning data service
+		to add new Car_Experience__c record -->
+    <force:recordData aura:id="service"
+                      mode="EDIT"
+                      targetFields="{!v.carExperience}"
+                      targetError="{!v.recordError}"
+                      recordUpdated="{!c.onRecordUpdated}" 
+                      fields="Id, Name, Experience__c, Car__c" />
+    
+    <lightning:layout multipleRows="true">
+    	<lightning:layoutItem size="12" smallDeviceSize="12" 
+                              mediumDeviceSize="12"
+                              largeDeviceSize="12" padding="around-small">
+            <lightning:input name="title" label="Title" value="{!v.carExperience.Name}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="12" 
+                              mediumDeviceSize="12"
+                              largeDeviceSize="12"  padding="around-small">
+            <label class="slds-form-element__label" for="input-id-01">Description</label>
+            <lightning:inputRichText value="{!v.carExperience.Experience__c}" disabledCategories="FORMAT_FONT"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="12" 
+                              mediumDeviceSize="12"
+                              largeDeviceSize="12"  padding="around-small">
+            <lightning:button label="Add Experience" iconName="utility:save" 
+                              onclick="{!c.onSave}" />
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

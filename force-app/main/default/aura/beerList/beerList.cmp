@@ -1,0 +1,33 @@
+<aura:component access="global">
+    <aura:attribute name="beerList" type="Object" />
+    <aura:attribute name="beerIdClick" type="String" />
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    
+    <div class="slds-p-around_medium">
+        <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.beerList}"  var="con">
+                <div class="slds-col slds-size_1-of-4 slds-p-around_small">
+                    <lightning:card footer="{!con.brewery_Name__c}" title="{!con.Name}" iconName="custom:custom1">
+                        <aura:set attribute="actions">
+                            <lightning:button name="{!con.Id}" label="View Details" onclick="{!c.viewInfo}"/>
+                        </aura:set>
+                        <p class="slds-p-horizontal_small">
+                            <br/>
+                            <div class="slds-grid slds-gutters">
+                                <div class="slds-col slds-size_1-of-3">
+                                    <img src="{!$Resource.BeerImage}" />
+                                </div>
+                                <div class="slds-col slds-size_2-of-3">
+                                    Brewery Id : {!con.brewery_id__c}<br/>
+                                    Brewery Name : {!con.brewery_Name__c}<br/>
+                                    Alcohol % : {!con.Alcohol__c}<br/>
+                                </div>
+                            </div>
+                        </p>
+                    </lightning:card>
+                </div>
+            </aura:iteration >
+        </div>
+    </div>
+   
+</aura:component>

@@ -1,0 +1,20 @@
+<aura:component controller="beerAuraService" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:isUrlAddressable" access="global" >
+    <aura:handler name="BeerEvent" event="c:searchEvent" action ="{!c.doSearchEvent}" />
+    <aura:handler name="init" value="{!this}" action ="{!c.doSearchEvent}" />
+    <aura:attribute name="beerList" type="Object" />
+    <aura:handler name="addToCart" event="c:AddToCart" action="{!c.updateCart}" />
+
+    <div>
+        <!-- Header Cmp is reusable Component for Headers -->
+        <c:headerCmp aura:id="headerComp" tagLine="Beer Explorer" message="Find Any chilled BEER of Your Choice" />
+    </div>
+    <div>
+        <!-- Search Cmp is reusable Component for Searching -->
+        <c:beerSearch />
+    </div>
+    <div>
+        <!-- List Cmp is reusable Component for Listing -->
+        <c:beerListComponent beerList="{!v.beerList}" />
+    </div>
+    
+</aura:component>
