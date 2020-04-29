@@ -6,7 +6,7 @@
 // was auto selected for you.
 
 public class JSON2Apexgagan {
-    
+    //this class is for JSON deserialize
     public class RelatedPlaylists {
         public String uploads {get;set;} 
         public String watchHistory {get;set;} 
